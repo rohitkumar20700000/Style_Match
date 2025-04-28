@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StyleMatch Bridal Service Booking</title>
+  <link rel="stylesheet" href="BookAppointment.css" />
+</head>
+<body>
+
+<h2>BRIDAL SERVICE BOOKING</h2>
+
+<div class="header">
+  <img src="logo.png" alt="logo">
+  <h1>StyleMatch</h1>
+  <p>UNISEX SALON</p>
+</div>
+
+<div class="container">
+
+  <div class="form-row">
+    <div class="form-group">
+      <label>NAME :</label>
+      <input type="text" id="firstName" placeholder="First Name">
+      <input type="text" id="lastName" placeholder="Last Name">
+    </div>
+    <div class="form-group">
+      <label>GENDER :</label>
+      <select id="gender">
+        <option>CHOOSE</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label>MOBILE NO :</label>
+      <input type="text" id="mobile" placeholder="+91">
+    </div>
+    <div class="form-group">
+      <label>EMAIL :</label>
+      <input type="email" id="email" placeholder="@gmail.com">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label>SERVICE :</label>
+      <select id="service">
+        <option>Select Service</option>
+        <option>TRIAL MAKEUP SERVICE</option>
+        <option>PRE-WEDDING MAKEUP SERVICE</option>
+        <option>MEHANDI SERVICE</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>DATE :</label>
+      <select id="month"></select>
+      <select id="day"></select>
+      <select id="year"></select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label>TIME :</label>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <input type="text" id="startTime" placeholder="Start Time">
+        <select id="startAMPM">
+          <option>AM</option>
+          <option>PM</option>
+        </select>
+        <span>to</span>
+        <input type="text" id="endTime" placeholder="End Time">
+        <select id="endAMPM">
+          <option>AM</option>
+          <option>PM</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group" style="width: 100%;">
+      <label>ADDRESS :</label>
+      <input type="text" id="address" placeholder="Enter your address">
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button onclick="bookAppointment()">BOOK APPOINTMENT</button>
+  </div>
+
+</div>
+
+<div class="overlay" id="confirmation">
+  <div class="overlay-content">
+    <span class="close-btn" onclick="closeOverlay()">✖</span>
+
+    <!-- Confetti GIF -->
+    <div class="confetti-gif" id="confettiAnimation">
+      <img src="confetti.gif" alt="Celebration">
+    </div>
+
+    <div id="confirmationMessage"></div>
+  </div>
+</div>
+
+<script>
+  // Populate Date Fields
+  const today = new Date();
+  const monthEl = document.getElementById('month');
+  const dayEl = document.getElementById('day');
+  const yearEl = document.getElementById('year');
+
+  const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+  months.forEach((m, i) => {
+    const option = document.createElement('option');
+    option.value = i;
+    option.text = m;
+    if (i === today.getMonth()) option.selected = true;
+    monthEl.appendChild(option);
+  });
+
+  function populateDays() {
+    dayEl.innerHTML = '';
+    const year = parseInt(yearEl.value);
+    const month = parseInt(monthEl.value);
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    for (let d = 1; d <= daysInMonth; d++) {
+      const option = document.createElement('option');
+      option.text = d;
+      if (d === today.getDate()) option.selected = true;
+      dayEl.appendChild(option);
+    }
+  }
+
+  for (let y = today.getFullYear(); y <= today.getFullYear() + 1; y++) {
+    const option = document.createElement('option');
+    option.text = y;
+    if (y === today.getFullYear()) option.selected = true;
+    yearEl.appendChild(option);
+  }
+
+  monthEl.onchange = populateDays;
+  yearEl.onchange = populateDays;
+  populateDays();
+
+  // Booking Confirmation
+ function bookAppointment() {
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName = document.getElementById('lastName').value.trim();
+  const gender = document.getElementById('gender').value;
+  const mobile = document.getElementById('mobile').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const service = document.getElementById('service').value;
+  const startTime = document.getElementById('startTime').value.trim();
+  const startAMPM = document.getElementById('startAMPM').value;
+  const endTime = document.getElementById('endTime').value.trim();
+  const endAMPM = document.getElementById('endAMPM').value;
+  const address = document.getElementById('address').value.trim();
+  const month = document.getElementById('month').value;
+  const day = document.getElementById('day').value;
+  const year = document.getElementById('year').value;
+
+  // Validation
+  if (!firstName || !lastName) {
+    alert("Please enter your full name.");
+    return;
+  }
+  if (gender === "CHOOSE") {
+    alert("Please select your gender.");
+    return;
+  }
+  if (!mobile) {
+    alert("Please enter your mobile number.");
+    return;
+  }
+  if (!email) {
+    alert("Please enter your email.");
+    return;
+  }
+  if (service === "Select Service") {
+    alert("Please select a bridal service.");
+    return;
+  }
+  if (!startTime || !endTime) {
+    alert("Please enter both start and end time.");
+    return;
+  }
+  if (!address) {
+    alert("Please enter your address.");
+    return;
+  }
+
+  // If all valid, continue booking
+  const name = firstName + " " + lastName;
+  const date = `${months[month]} ${day}, ${year}`;
+  const timing = `${startTime} ${startAMPM} to ${endTime} ${endAMPM}`;
+
+  const message = `
+    <h3>Thanks ${name}!!!</h3>
+    <p>Your bridal appointment for <strong>${service}</strong> has been successfully confirmed!</p>
+    <p>Scheduled on <strong>${date}</strong> from <strong>${timing}</strong>.</p>
+    <p>Address: <strong>${address}</strong></p>
+    <p>For any changes or inquiries, contact us at <strong>+91 (996)-273-4416</strong>.</p>
+    <p>Thank you for choosing <strong>StyleMatch</strong>.</p>
+  `;
+
+  document.getElementById('confirmationMessage').innerHTML = message;
+  document.getElementById('confirmation').style.display = 'flex';
+
+  // Show Confetti Animation
+  const confetti = document.getElementById('confettiAnimation');
+  confetti.style.display = 'block';
+  setTimeout(() => {
+    confetti.style.display = 'none';
+  }, 2000);
+}
+
+
+  function closeOverlay() {
+    document.getElementById('confirmation').style.display = 'none';
+    document.getElementById('confettiAnimation').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
