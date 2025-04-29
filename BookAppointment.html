@@ -13,7 +13,7 @@
   body {
     margin: 0;
     padding: 0;
-    background: url('formbackground-image.png') no-repeat center center/cover;
+    background: url('images/formbackground-image.png') no-repeat center center/cover;
   }
 
   .container {
@@ -183,7 +183,7 @@
 <h2>APPOINTMENT BOOKING</h2>
 
 <div class="header">
-  <img src="logo.png" alt="logo">
+  <img src="images/logo.png" alt="logo">
   <h1>StyleMatch</h1>
   <p>UNISEX SALON</p>
 </div>
@@ -258,7 +258,7 @@
 
     <!-- Confetti GIF -->
     <div class="confetti-gif" id="confettiAnimation">
-      <img src="confetti.gif" alt="Celebration">
+      <img src="images/confetti.gif" alt="Celebration">
     </div>
 
     <div id="confirmationMessage"></div>
@@ -318,31 +318,41 @@
 
   // Booking Confirmation
   function bookAppointment() {
-    const name = document.getElementById('firstName').value + " " + document.getElementById('lastName').value;
-    const service = document.getElementById('service').value;
-    const date = `${months[monthEl.value]} ${dayEl.value}, ${yearEl.value}`;
-    const time = timeEl.value;
-    if (time === "CHOOSE") {
-      alert("Please select a time slot!");
-      return;
-    }
-    const message = `
-      <h3>Thanks ${name}!!!</h3>
-      <p>Your appointment for <strong>${service}</strong> has been successfully confirmed!</p>
-      <p>We look forward to seeing you on <strong>${date}</strong> at <strong>${time}</strong>.</p>
-      <p>For any changes or inquiries, contact us at <strong>+1 (646) 555-7890</strong>.</p>
-      <p>Thank you for choosing <strong>StyleMatch</strong>.</p>
-    `;
-    document.getElementById('confirmationMessage').innerHTML = message;
-    document.getElementById('confirmation').style.display = 'flex';
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName = document.getElementById('lastName').value.trim();
+  const gender = document.getElementById('gender').value;
+  const mobile = document.getElementById('mobile').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const service = document.getElementById('service').value;
+  const date = `${months[monthEl.value]} ${dayEl.value}, ${yearEl.value}`;
+  const time = timeEl.value;
 
-    // Show Confetti Animation
-    const confetti = document.getElementById('confettiAnimation');
-    confetti.style.display = 'block';
-    setTimeout(() => {
-      confetti.style.display = 'none';
-    }, 2000);
+  if (!firstName || !lastName || gender === "CHOOSE" || !mobile || !email ||
+      service === "Select Service" || time === "CHOOSE") {
+    alert("Please fill out all fields and make proper selections before booking your appointment.");
+    return;
   }
+
+  const name = `${firstName} ${lastName}`;
+  const message = `
+    <h3>Thanks ${name}!!!</h3>
+    <p>Your appointment for <strong>${service}</strong> has been successfully confirmed!</p>
+    <p>We look forward to seeing you on <strong>${date}</strong> at <strong>${time}</strong>.</p>
+    <p>For any changes or inquiries, contact us at <strong>+1 (646) 555-7890</strong>.</p>
+    <p>Thank you for choosing <strong>StyleMatch</strong>.</p>
+  `;
+
+  document.getElementById('confirmationMessage').innerHTML = message;
+  document.getElementById('confirmation').style.display = 'flex';
+
+  // Show Confetti Animation
+  const confetti = document.getElementById('confettiAnimation');
+  confetti.style.display = 'block';
+  setTimeout(() => {
+    confetti.style.display = 'none';
+  }, 2000);
+}
+
 
   function closeOverlay() {
     document.getElementById('confirmation').style.display = 'none';

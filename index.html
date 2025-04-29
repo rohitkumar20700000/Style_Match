@@ -11,9 +11,13 @@
     font-family: Arial, sans-serif;
     color: white;
 
+
   }
+  html {
+  scroll-behavior: smooth;
+}
   .Front-Page{
-    background-image: url("barbershop-bg.png");
+    background-image: url("images/barbershop-bg.png");
     background-size: cover;
     background-position: center;
 
@@ -52,19 +56,20 @@
     line-height: 2.8;
   }
   
-  .nav-links {
-    display: flex;
-    align-items: center;
-  }
-  
-  .nav-links span,
+  .nav-links a {
+  color: white;
+  text-decoration: none;  /* removes underline */
+  font-size: 18px;
+}
+
+  .nav-links a,
   .login-button {
     margin-left: 20px;
     cursor: pointer;
     transition: opacity 0.3s;
   }
   
-  .nav-links span:hover,
+  .nav-links a:hover,
   .login-button:hover {
     opacity: 0.7;
   }
@@ -161,10 +166,10 @@
       margin-top: 10px;
     }
   
-    .nav-links span,
-    .login-button {
-      margin: 10px 0;
-    }
+  .nav-links a,
+  .login-button {
+    margin: 10px 0;
+  }
   
     .login-button {
       padding: 8px 20px;
@@ -206,11 +211,11 @@
       line-height: 1.8;
     }
   
-    .nav-links span,
-    .login-button {
-      margin-left: 15px;
-      font-size: 16px;
-    }
+    .nav-links a,
+  .login-button {
+    margin-left: 15px;
+    font-size: 16px;
+  }
   
     .login-button {
       padding: 6px 18px;
@@ -233,11 +238,11 @@
       line-height: 3.5;
     }
   
-    .nav-links span,
-    .login-button {
-      margin-left: 30px;
-      font-size: 20px;
-    }
+    .nav-links a,
+  .login-button {
+    margin-left: 30px;
+    font-size: 20px;
+  }
   
     .login-button {
       padding: 8px 25px;
@@ -316,7 +321,7 @@
 
   .newly-launched {
     padding: 60px 20px;
-    background-image: url('giphy.gif');
+    background-image: url('images/giphy.gif');
     background-repeat: no-repeat;
     background-size: cover; /* Or use `contain` if you want the full gif visible */
     background-position: center;
@@ -688,16 +693,16 @@
   </style>
 </head>
 <body>
- <div class="Front-Page">
+ <div class="Front-Page" id="home">
   <div class="tags-container">
     <div class="left-logo">
-      <img src="logo.png" alt="logo" class="logo-image" />
+      <img src="images/logo.png" alt="logo" class="logo-image" />
       <h2 class="logo">StyleMatch</h2>
     </div>
     <div class="nav-links">
-      <span>OUR SERVICE</span>
-      <span>FRANCHISE</span>
-      <span>ABOUT US</span>
+      <a href="#services" class="nav-link">OUR SERVICE</a>
+      <a>ORDERS</a>
+      <a href="#about" class="nav-link">ABOUT US</a>
       <button class="login-button" onclick="location.href='LoginPage.html'">LOGIN</button>
     </div>
   </div>
@@ -716,27 +721,27 @@
     </div>
   </div>
 </div>
-<section class="categories">
+<section class="categories" id="services">
     <h2 class="categories-title">CATEGORIES</h2>
     <div class="category-grid">
-      <div class="category-card" onclick="location.href='WomenStyle.html'" style="background-image: url('women-style.png');">
+      <div class="category-card" onclick="location.href='WomenStyle.html'" style="background-image: url('images/women-style.png');">
         <div class="category-label">WOMEN STYLE</div>
       </div>
-      <div class="category-card" onclick="location.href='MenStyle.html'" style="background-image: url('men-style.png');">
+      <div class="category-card" onclick="location.href='MenStyle.html'" style="background-image: url('images/men-style.png');">
         <div class="category-label">MEN STYLE</div>
       </div>
-      <div class="category-card" onclick="location.href='HairTreatment.html'" style="background-image: url('hair-treatment.png');">
+      <div class="category-card" onclick="location.href='HairTreatment.html'" style="background-image: url('images/hair-treatment.png');">
         <div class="category-label">HAIR TREATMENT</div>
       </div>
-      <div class="category-card" onclick="location.href='ownproducts.html'" style="background-image: url('own-products.png');">
+      <div class="category-card" onclick="location.href='ownproducts.html'" style="background-image: url('images/own-products.png');">
         <div class="category-label">OWN PRODUCTS</div>
       </div>
     </div>
   </section>
-  <section class="newly-launched">
+  <section class="newly-launched" id="blog">
     <div class="launch-container">
       <div class="launch-image">
-        <img src="facecream.png" alt="StyleMatch Cream" />
+        <img src="images/facecream.png" alt="StyleMatch Cream" />
       </div>
       <div class="launch-details">
         <h2 class="launch-title">NEWLY LAUNCHED!!!</h2>
@@ -753,7 +758,7 @@
     <div class="scroll-container">
       <!-- Edwin -->
       <div class="staff-card">
-        <img src="edwin.png" class="card-img-top" alt="Edwin Lee">
+        <img src="images/edwin.png" class="card-img-top" alt="Edwin Lee">
         <div class="card-body">
           <h5 class="card-title">SAYED GHULAM</h5>
           <p class="card-text"><strong>Men Hair Stylist</strong><br>Specializes in cutting, coloring, and styling hair to suit clients' preferences and trends.</p>
@@ -762,7 +767,7 @@
       </div>
       <!-- Julia -->
       <div class="staff-card">
-        <img src="julia.png" class="card-img-top" alt="Julia">
+        <img src="images/julia.png" class="card-img-top" alt="Julia">
         <div class="card-body">
           <h5 class="card-title">JULIA</h5>
           <p class="card-text"><strong>Skincare Specialist</strong><br>Provides facials, skin treatments, and tailored product recommendations.</p>
@@ -771,7 +776,7 @@
       </div>
       <!-- Wayne -->
       <div class="staff-card">
-        <img src="wayne.png" class="card-img-top" alt="Wayne Goss">
+        <img src="images/wayne.png" class="card-img-top" alt="Wayne Goss">
         <div class="card-body">
           <h5 class="card-title">WAYNE GOSS</h5>
           <p class="card-text"><strong>Unisex Makeup Artist</strong><br>Focuses on creating stunning looks for events, weddings, and everyday glamour.</p>
@@ -780,7 +785,7 @@
       </div>
       <!-- Tommy -->
       <div class="staff-card">
-        <img src="tommy.png" class="card-img-top" alt="Tommy Dean">
+        <img src="images/tommy.png" class="card-img-top" alt="Tommy Dean">
         <div class="card-body">
           <h5 class="card-title">TOMMY AARKIF</h5>
           <p class="card-text"><strong>Massage Therapist</strong><br>Provides relaxing massages for the head, neck, and shoulders.</p>
@@ -789,7 +794,7 @@
       </div>
       <!-- Andria -->
       <div class="staff-card">
-        <img src="andria.png" class="card-img-top" alt="Andria">
+        <img src="images/andria.png" class="card-img-top" alt="Andria">
         <div class="card-body">
           <h5 class="card-title">ANDRIA</h5>
           <p class="card-text"><strong>Women Hair Stylist</strong><br>Expert in modern cuts, coloring, and styling techniques tailored for women.</p>
@@ -798,7 +803,7 @@
       </div>
       <!-- Mohan -->
       <div class="staff-card">
-        <img src="mohan.png" class="card-img-top" alt="Mohan">
+        <img src="images/mohan.png" class="card-img-top" alt="Mohan">
         <div class="card-body">
           <h5 class="card-title">MOHAN</h5>
           <p class="card-text"><strong>Men Hair Stylist</strong><br>Specializes in classic and trendy haircuts, fades, and beard grooming.</p>
@@ -808,32 +813,32 @@
     </div>
   </div>
 </section>
-<section class="bridal-section">
+<section class="bridal-section" id="events">
   <h2 class="bridal-title">BRIDAL SERVICES</h2>
   <div class="image-container" id="image-container">
-    <img src="leftface.png" alt="Before" class="image-half">
-    <img src="rightface.png" alt="After" class="image-half">
+    <img src="images/leftface.png" alt="Before" class="image-half">
+    <img src="images/rightface.png" alt="After" class="image-half">
   </div>
   <div class="caption">
     <p>"Comprehensive bridal services, including makeup, hairstyling, skincare, and grooming, to make your special day flawless and unforgettable."</p>
     <button onclick="location.href='BridalService.html'">BOOK YOUR SLOT</button>
   </div>
 </section>
-<section class="awards-section">
+<section class="awards-section" id="about">
   <h2 class="awards-title">AWARDS AND ACHIEVEMENTS</h2>
 
   <!-- First Row -->
   <div class="awards-row">
     <div class="award-card">
-      <img src="award1.png" alt="Salon of the Year" />
+      <img src="images/award1.png" alt="Salon of the Year" />
       <p>Salon of the Year</p>
     </div>
     <div class="award-card">
-      <img src="award2.png" alt="Top Creative Makeup Studio" />
+      <img src="images/award2.png" alt="Top Creative Makeup Studio" />
       <p>Top Creative Makeup Studio</p>
     </div>
     <div class="award-card">
-      <img src="award3.png" alt="Innovative Hair Treatment Specialist" />
+      <img src="images/award3.png" alt="Innovative Hair Treatment Specialist" />
       <p>Innovative Hair Treatment Specialist</p>
     </div>
   </div>
@@ -841,24 +846,30 @@
   <!-- Second Row -->
   <div class="awards-row second-row">
     <div class="award-card">
-      <img src="award4.png" alt="Best Customer Service" />
+      <img src="images/award4.png" alt="Best Customer Service" />
       <p>Best Customer Service</p>
     </div>
     <div class="award-card">
-      <img src="award5.png" alt="Top Rated Salon" />
+      <img src="images/award5.png" alt="Top Rated Salon" />
       <p>Top Rated Salon</p>
     </div>
   </div>
 </section>
-<footer style="padding: 40px 20px; border-top: 1px solid #ccc; font-size: 0.9rem; color: #555;">
+<footer style="padding: 40px 20px; border-top: 1px solid #ccc; font-size: 0.9rem; color: #555;" id="privacy">
   <div style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1000px; margin: auto;">
     <div>
       <h4>Company</h4>
-      <p>Home<br>Blog<br>About Us<br>Franchise<br>Privacy Policy</p>
+        <a href="#home">Home</a><br>
+        <a href="#blog">Blog</a><br>
+        <a href="#about">About Us</a><br>
+        <a href="#privacy">Privacy Policy</a>
     </div>
     <div>
       <h4>Our Services</h4>
-      <p>Events<br>Hair Care<br>Skin Care<br>Body Care</p>
+      <a href="#events">Events</a><br>
+      <a href="#services">Hair Care</a><br>
+      <a href="#services">Skin Care</a><br>
+      <a href="#services">Body Care</a>
     </div>
     <div>
       <h4>Contact Us</h4>
@@ -871,7 +882,7 @@
       <h4>Thanks for choosing</h4>
       <p style="font-weight: bold; font-size: 1.1rem;">StyleMatch</p>
       <div>
-        <img style="width: 70px; height: 70px; margin-right: 10px; filter: brightness(0) invert(0);" src="logo.png" alt="logo">
+        <img style="width: 70px; height: 70px; margin-right: 10px; filter: brightness(0) invert(0);" src="images/logo.png" alt="logo">
       </div>
     </div>
   </div>
