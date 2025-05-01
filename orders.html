@@ -5,8 +5,8 @@
   <title>Your Orders - StyleMatch</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f9f0dc;
       color: #333;
     }
@@ -18,17 +18,17 @@
       border-radius: 5px;
     }
     h1 {
-  text-align: center;
-  padding: 20px 20px 20px;
-  font-size: 2.8rem;
-  color: white;
-  background-color: #000;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 300;
-  font-size: 24px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
+        text-align: center;
+        padding: 20px 20px 20px;
+        font-size: 2.8rem;
+        color: white;
+        background-color: #000;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 300;
+        font-size: 24px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
     h3 {
       margin-top: 0;
       color: #007bff;
@@ -36,6 +36,42 @@
     p {
       margin: 5px 0;
     }
+    /* Responsive design */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+    padding: 15px;
+  }
+
+  .order-container {
+    padding: 10px;
+    margin: 10px 5px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .order-container {
+    font-size: 13px;
+    padding: 8px;
+    margin: 8px 2px;
+  }
+
+  p, h3 {
+    word-wrap: break-word;
+  }
+}
+
   </style>
 </head>
 <body>
